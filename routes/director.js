@@ -23,6 +23,34 @@ router.post("/", (req, res) => {
 
 });
 
+
+/**
+ *
+ */
+router.get("/",(req,res)=>{
+    const promise = DirectorSchema.aggregate([
+        {
+            $lookup:
+                {
+                    from:"movies",
+                    localField:"_id",
+                    foreignField:"director",
+                    as:"movies"
+                },
+
+        },
+        {
+            $unwind:
+                {
+                    path:"$movies"
+                }
+        }
+    ]);
+});
+/**
+ *
+ */
+
 /**
  *
  */

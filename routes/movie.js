@@ -66,14 +66,15 @@ router.get("/:movie_id",(req,res,next)=>{
  * save data
  */
 router.post('/', (req, res, next) =>{
-    const {title, imdb_score, category, country, year} = req.body;
+    const {title, imdb_score, category, country, year,director_id} = req.body;
 
     const movie = new MovieSchema({
         title: title,
         imdb_score: imdb_score,
         category: category,
         country: country,
-        year: year
+        year: year,
+        director_id:director_id
     });
 
     //const movie = new MovieSchema(req.body);
@@ -156,7 +157,7 @@ router.get("/between/:start_year/:end_year", (req, res) => {
 
 });
 /**
- * between two years
+ * end between two years
  */
 
 
