@@ -5,8 +5,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-.idea/*
-.helper/*
+/.idea/*
+/helper/
 
 # Runtime data
 pids
