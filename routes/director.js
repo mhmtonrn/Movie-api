@@ -46,7 +46,7 @@ router.get("/", (req, res) => {
                     localField: "_id",
                     foreignField: "director_id",
                     as: "movies"
-                },
+                }
 
         },
         {
@@ -62,24 +62,25 @@ router.get("/", (req, res) => {
                     _id:
                         {
                             _id: "$_id",
-                            name:"$name",
-                            surname:"$surname",
-                            bio:"$bio"
+                            name: "$name",
+                            surname: "$surname",
+                            bio: "$bio"
                         },
-                    movies:{
+                    movies: {
                         $push: "$movies"//her yönetmenin filmini obje olarak göstermek için
                     }
                 }
         },
         {
-            $project:{//dönen verilerden hangisinin gösterileceği
-                _id:"$_id._id",
-                name:"$_id.name",
-                surname:"$_id.surname",
-                movies:"$movies"
+            $project: {//dönen verilerden hangisinin gösterileceği
+                _id: "$_id._id",
+                name: "$_id.name",
+                surname: "$_id.surname",
+                movies: "$movies"
             }
         }
     ]);
+
     promise.then((getDirectories) => {
         res.json(getDirectories)
     }).catch((err) => {
@@ -97,7 +98,7 @@ router.get("/", (req, res) => {
 router.get("/:director_id", (req, res) => {
     const promise = DirectorSchema.aggregate([
         {
-            $match:{
+            $match: {
                 _id: mongoose.Types.ObjectId(req.params.director_id)
             }
         },
@@ -124,21 +125,21 @@ router.get("/:director_id", (req, res) => {
                     _id:
                         {
                             _id: "$_id",
-                            name:"$name",
-                            surname:"$surname",
-                            bio:"$bio"
+                            name: "$name",
+                            surname: "$surname",
+                            bio: "$bio"
                         },
-                    movies:{
+                    movies: {
                         $push: "$movies"//her yönetmenin filmini obje olarak göstermek için
                     }
                 }
         },
         {
-            $project:{//dönen verilerden hangisinin gösterileceği
-                _id:"$_id._id",
-                name:"$_id.name",
-                surname:"$_id.surname",
-                movies:"$movies"
+            $project: {//dönen verilerden hangisinin gösterileceği
+                _id: "$_id._id",
+                name: "$_id.name",
+                surname: "$_id.surname",
+                movies: "$movies"
             }
         }
     ]);
@@ -196,7 +197,6 @@ router.delete("/:director_id", (req, res, next) => {
 /**
  * delete director using id
  */
-
 
 
 /**
