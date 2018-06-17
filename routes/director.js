@@ -173,8 +173,31 @@ router.put("/:director_id", (req, res, next) => {
     });
 });
 /**
- * update director using id
+ * end update director using id
  */
+
+/**
+ * delete director using id
+ */
+router.delete("/:director_id", (req, res, next) => {
+    const getDirector = DirectorSchema.findByIdAndRemove(req.params.director_id);
+    getDirector.then((removeDirector) => {
+        res.json(removeDirector);
+    }).catch((err) => {
+        console.log(__filename, " => delete:api/director/:director_id ", err)
+        res.json({
+            status: "fail",
+            error: {
+                message: `${__filename}, => delete:api/directors/:director_id `, code: pageCode
+            }
+        });
+    });
+});
+/**
+ * delete director using id
+ */
+
+
 
 /**
  *
