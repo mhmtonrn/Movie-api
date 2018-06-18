@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const indexRouter = require('./routes/index');
 const movieRouter = require('./routes/movie');
 const directorRouter = require('./routes/director');
+const registerRouter = require('./routes/register');
 
 const app = express();
 
@@ -19,6 +20,22 @@ const db = require("./helper/db")();
  * end mongodb connection
  */
 
+/**
+ * config file
+ */
+const config = require("./config");
+app.set("api_secret_key",config.api_secret_key);
+/**
+ * end config file
+ */
+
+/**
+ * middleware
+ */
+const verifyToken = require("./middleware/verify-token")
+/**
+ * end middleware
+ */
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -34,8 +51,10 @@ app.use(express.static(path.join(__dirname, 'public')));
  * routing to address
  */
 app.use('/', indexRouter);
+app.use('/api', verifyToken);
 app.use('/api/movies', movieRouter);
 app.use('/api/directors', directorRouter);
+app.use('/register', registerRouter);
 /**
  * end routing to address
  */

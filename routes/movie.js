@@ -111,6 +111,12 @@ router.post('/', (req, res, next) =>{
     }).catch((err) => {
         if (err)
             console.log("movie save error:", err);
+        res.json({
+            status: "fail",
+            error: {
+                message: `${__filename}, => save:api/movies/{req.body} `, code: pageCode
+            }
+        });
     });
 });
 /**
@@ -186,9 +192,7 @@ router.get("/between/:start_year/:end_year", (req, res) => {
 
 
 
-/**
- *
- */
+
 
 //
 module.exports = router;
