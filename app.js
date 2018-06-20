@@ -51,7 +51,7 @@ app.use(express.static(path.join(__dirname, 'public')));
  * routing to address
  */
 app.use('/', indexRouter);
-app.use('/api', verifyToken);
+app.use('/', verifyToken);
 app.use('/api/movies', movieRouter);
 app.use('/api/directors', directorRouter);
 app.use('/register', registerRouter);
